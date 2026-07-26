@@ -1,0 +1,18 @@
+# Windows
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editors
+.vscode/
+.idea/
+*.suo
+*.user
+
+# Dependencies (if ever added)
+node_modules/

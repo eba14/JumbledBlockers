@@ -1,0 +1,93 @@
+/* ── Logo ── */
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-10px); }
+}
+
+/* ── Background Orbs ── */
+@keyframes orbFloat {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    33%       { transform: translate(30px,-30px) scale(1.05); }
+    66%       { transform: translate(-20px,20px) scale(0.95); }
+}
+
+/* ── Floating Discs ── */
+.floating-discs {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: visible;
+}
+
+.floating-disc {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    animation: discFloat 7s ease-in-out infinite;
+}
+
+.floating-disc.red    { background: linear-gradient(135deg,#e74c3c,#c0392b); top:15%; left:6%;  animation-delay:0s;    }
+.floating-disc.blue   { background: linear-gradient(135deg,#3498db,#2980b9); top:55%; right:8%; animation-delay:-1.5s; }
+.floating-disc.green  { background: linear-gradient(135deg,#2ecc71,#27ae60); top:25%; right:12%;animation-delay:-3s;   }
+.floating-disc.yellow { background: linear-gradient(135deg,#f1c40f,#f39c12); top:70%; left:12%; animation-delay:-4.5s; }
+.floating-disc.orange { background: linear-gradient(135deg,#ff9100,#e67e22); top:40%; left:3%;  animation-delay:-2s;   }
+.floating-disc.purple { background: linear-gradient(135deg,#9b59b6,#8e44ad); top:65%; right:4%; animation-delay:-5s;   }
+
+@keyframes discFloat {
+    0%,100% { transform: translateY(0) rotate(0deg);   opacity:0.75; }
+    25%      { transform: translateY(-18px) rotate(90deg);  opacity:0.9; }
+    50%      { transform: translateY(-8px) rotate(180deg);  opacity:0.8; }
+    75%      { transform: translateY(-22px) rotate(270deg); opacity:0.9; }
+}
+
+/* ── Mini Pole ── */
+@keyframes miniPoleFloat {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(-5px); }
+}
+
+/* ── Status ── */
+@keyframes fadeSlideIn {
+    from { opacity:0; transform:translateY(-8px); }
+    to   { opacity:1; transform:translateY(0); }
+}
+
+@keyframes errorShake {
+    0%,100% { transform:translateX(0); }
+    25%      { transform:translateX(-6px); }
+    75%      { transform:translateX(6px); }
+}
+
+#status-message.error { animation: errorShake 0.4s ease; }
+
+/* ── Win Modal ── */
+@keyframes fadeIn {
+    from { opacity:0; }
+    to   { opacity:1; }
+}
+
+@keyframes modalPop {
+    from { opacity:0; transform:scale(0.8); }
+    to   { opacity:1; transform:scale(1); }
+}
+
+/* ── Celebration ── */
+@keyframes celebration {
+    0%   { transform:translateY(0) scale(1); }
+    30%  { transform:translateY(-16px) scale(1.15); }
+    60%  { transform:translateY(-8px) scale(1.05); }
+    100% { transform:translateY(0) scale(1); }
+}
+
+.celebrating { animation: celebration 0.6s ease forwards; }
+
+/* ── Drop targets ── */
+.pole.drop-target   { animation: dropPulse 1s ease-in-out infinite; }
+.pole.invalid-target { animation: none; }
+
+@keyframes dropPulse {
+    0%,100% { box-shadow: 0 0 0 3px #2ecc71, 0 0 12px rgba(46,204,113,0.4); }
+    50%      { box-shadow: 0 0 0 5px #2ecc71, 0 0 24px rgba(46,204,113,0.7); }
+}

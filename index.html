@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jumbled Blockers</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <div class="bg-orbs" aria-hidden="true">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <header class="hero-section">
+        <div class="logo-container">
+            <div class="floating-discs" aria-hidden="true">
+                <div class="floating-disc red"></div>
+                <div class="floating-disc blue"></div>
+                <div class="floating-disc green"></div>
+                <div class="floating-disc yellow"></div>
+                <div class="floating-disc orange"></div>
+                <div class="floating-disc purple"></div>
+            </div>
+            <img src="JumbledBlockers.webp" alt="Jumbled Blockers" class="game-logo">
+            <p class="game-subtitle">Sort the chaos. Master the colors.</p>
+        </div>
+    </header>
+
+    <main class="game-wrapper">
+
+        <div id="info-container">
+            <div id="rules-container">
+                <h2>How to Play</h2>
+                <div class="rule-item"><span class="rule-icon">🎨</span> Sort all discs by color onto their matching pole</div>
+                <div class="rule-item"><span class="rule-icon">☝️</span> Only the top disc on a pole can be moved</div>
+                <div class="rule-item"><span class="rule-icon">🔢</span> Move one disc at a time</div>
+                <div class="rule-item" id="max-discs-rule"><span class="rule-icon">📏</span> Each pole holds a maximum of 4 discs</div>
+            </div>
+            <div class="info-stats">
+                <div id="timer-display" class="stat-box hidden">
+                    <div class="stat-label">Time</div>
+                    <div class="stat-value" id="timer-value">00:00</div>
+                </div>
+                <div id="score-display" class="stat-box hidden">
+                    <div class="stat-label">Moves</div>
+                    <div class="stat-value" id="move-count">0</div>
+                </div>
+                <div id="best-display" class="stat-box hidden">
+                    <div class="stat-label">Best</div>
+                    <div class="stat-value" id="best-score">--</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="status-message" class="hidden"></div>
+
+        <div id="game-container"></div>
+
+        <div id="controls">
+            <div class="difficulty-selector">
+                <h3>Choose Your Challenge</h3>
+                <div class="pole-selector-container">
+                    <div class="pole-option" data-poles="4">
+                        <div class="pole-visual">
+                            <div class="mini-pole"></div><div class="mini-pole"></div>
+                            <div class="mini-pole"></div><div class="mini-pole"></div>
+                        </div>
+                        <div class="pole-title">Beginner</div>
+                        <div class="pole-desc">4 Poles · 3 discs each</div>
+                        <div class="pole-stars">⭐</div>
+                    </div>
+                    <div class="pole-option" data-poles="5">
+                        <div class="pole-visual">
+                            <div class="mini-pole"></div><div class="mini-pole"></div>
+                            <div class="mini-pole"></div><div class="mini-pole"></div>
+                            <div class="mini-pole"></div>
+                        </div>
+                        <div class="pole-title">Easy</div>
+                        <div class="pole-desc">5 Poles · 4 discs each</div>
+                        <div class="pole-stars">⭐⭐</div>
+                    </div>
+                    <div class="pole-option" data-poles="6">
+                        <div class="pole-visual">
+                            <div class="mini-pole"></div><div class="mini-pole"></div>
+                            <div class="mini-pole"></div><div class="mini-pole"></div>
+                            <div class="mini-pole"></div><div class="mini-pole"></div>
+                        </div>
+                        <div class="pole-title">Medium</div>
+                        <div class="pole-desc">6 Poles · 5 discs each</div>
+                        <div class="pole-stars">⭐⭐⭐</div>
+                    </div>
+                    <div class="pole-option" data-poles="7">
+                        <div class="pole-visual">
+                            <div class="mini-pole"></div><div class="mini-pole"></div>
+                            <div class="mini-pole"></div><div class="mini-pole"></div>
+                            <div class="mini-pole"></div><div class="mini-pole"></div>
+                            <div class="mini-pole"></div>
+                        </div>
+                        <div class="pole-title">Expert</div>
+                        <div class="pole-desc">7 Poles · 6 discs each</div>
+                        <div class="pole-stars">⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-buttons">
+                <button id="start-btn">🚀 Start Game</button>
+                <button id="reset-btn" class="hidden">🔄 New Game</button>
+                <button id="hint-btn" class="hidden">💡 Hint</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Win Modal -->
+    <div id="win-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-emoji">🎉</div>
+            <h2 class="modal-title">Puzzle Complete!</h2>
+            <p class="modal-subtitle" id="modal-subtitle"></p>
+            <div class="modal-stats">
+                <div class="modal-stat">
+                    <div class="modal-stat-label">Moves</div>
+                    <div class="modal-stat-value" id="modal-moves">0</div>
+                </div>
+                <div class="modal-stat">
+                    <div class="modal-stat-label">Time</div>
+                    <div class="modal-stat-value" id="modal-time">00:00</div>
+                </div>
+            </div>
+            <button id="modal-play-again" class="modal-btn">🚀 Play Again</button>
+        </div>
+    </div>
+
+    <div id="drop-zone-indicator" class="hidden"></div>
+    <div id="drag-cursor" class="hidden"></div>
+
+    <footer class="game-footer">
+        <p>🎮 Challenge your mind &nbsp;·&nbsp; 🏆 Beat your best &nbsp;·&nbsp; 🌟 Share with friends</p>
+    </footer>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

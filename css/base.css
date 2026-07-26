@@ -1,0 +1,68 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(160deg, #0a2342 0%, #0f4c75 30%, #1a7a6e 65%, #20B2AA 100%);
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Animated background orbs */
+.bg-orbs { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.25;
+    animation: orbFloat 12s ease-in-out infinite;
+}
+
+.orb-1 { width: 500px; height: 500px; background: #20B2AA; top: -100px; left: -100px; animation-delay: 0s; }
+.orb-2 { width: 400px; height: 400px; background: #3498db; bottom: -50px; right: -50px; animation-delay: -4s; }
+.orb-3 { width: 350px; height: 350px; background: #9b59b6; top: 40%; left: 50%; animation-delay: -8s; }
+
+@keyframes orbFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -30px) scale(1.05); }
+    66% { transform: translate(-20px, 20px) scale(0.95); }
+}
+
+.hero-section {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 2.5rem 1rem 1rem;
+}
+
+.game-wrapper {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem 2rem;
+}
+
+.game-footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85em;
+    letter-spacing: 0.5px;
+}
+
+.hidden { display: none !important; }
+
+.game-started .difficulty-selector { display: none; }
+.game-started #start-btn { display: none; }
+
+@media (max-width: 768px) {
+    .hero-section { padding: 1.5rem 1rem 0.5rem; }
+    .game-wrapper { padding: 0 0.5rem 1rem; }
+}
