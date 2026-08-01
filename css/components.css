@@ -117,6 +117,15 @@
     animation: fadeSlideIn 0.3s ease;
 }
 
+#status-message.selection-prompt-mode {
+    background: linear-gradient(135deg, rgba(32,178,170,0.18), rgba(20,160,155,0.1));
+    border: 1px solid rgba(32,178,170,0.45);
+    color: rgba(255,255,255,0.92);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 4px 20px rgba(32,178,170,0.18), inset 0 1px 0 rgba(255,255,255,0.08);
+    letter-spacing: 0.3px;
+}
+
 #status-message.error {
     background: rgba(231,76,60,0.2);
     border: 1px solid rgba(231,76,60,0.5);

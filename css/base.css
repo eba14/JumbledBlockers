@@ -1,11 +1,18 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+html {
+    background: #0a2342;
+    overscroll-behavior: none;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     min-height: 100vh;
     background: linear-gradient(160deg, #0a2342 0%, #0f4c75 30%, #1a7a6e 65%, #20B2AA 100%);
+    background-attachment: fixed;
     overflow-x: hidden;
     position: relative;
+    overscroll-behavior: none;
 }
 
 /* Animated background orbs */
